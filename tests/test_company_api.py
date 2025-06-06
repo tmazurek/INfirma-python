@@ -11,7 +11,7 @@ class TestCompanyAPI:
         """Test creating a company profile via API."""
         profile_data = {
             "name": "Test Company Sp. z o.o.",
-            "nip": "1234563221",
+            "nip": "1234563224",
             "street": "ul. Testowa 1",
             "city": "Warszawa",
             "postal_code": "00-001",
@@ -25,7 +25,7 @@ class TestCompanyAPI:
         assert response.status_code == 201
         data = response.json()
         assert data["name"] == "Test Company Sp. z o.o."
-        assert data["nip"] == "1234563221"
+        assert data["nip"] == "1234563224"
         assert data["city"] == "Warszawa"
         assert data["id"] is not None
     
@@ -56,7 +56,7 @@ class TestCompanyAPI:
         # First create a profile
         profile_data = {
             "name": "Test Company",
-            "nip": "1234563221",
+            "nip": "1234563224",
             "street": "ul. Testowa 1",
             "city": "Warszawa",
             "postal_code": "00-001"
@@ -71,14 +71,14 @@ class TestCompanyAPI:
         assert get_response.status_code == 200
         data = get_response.json()
         assert data["name"] == "Test Company"
-        assert data["nip"] == "1234563221"
+        assert data["nip"] == "1234563224"
     
     def test_update_company_profile(self, client: TestClient):
         """Test updating company profile."""
         # First create a profile
         profile_data = {
             "name": "Test Company",
-            "nip": "1234563221",
+            "nip": "1234563224",
             "street": "ul. Testowa 1",
             "city": "Warszawa",
             "postal_code": "00-001"
@@ -99,7 +99,7 @@ class TestCompanyAPI:
         data = update_response.json()
         assert data["name"] == "Updated Company Name"
         assert data["email"] == "updated@company.pl"
-        assert data["nip"] == "1234563221"  # Should remain unchanged
+        assert data["nip"] == "1234563224"  # Should remain unchanged
     
     def test_update_company_profile_not_exists(self, client: TestClient):
         """Test updating company profile when none exists."""
@@ -124,7 +124,7 @@ class TestCompanyAPI:
         # First create a profile
         profile_data = {
             "name": "Test Company",
-            "nip": "1234563221",
+            "nip": "1234563224",
             "street": "ul. Testowa 1",
             "city": "Warszawa",
             "postal_code": "00-001"
@@ -148,7 +148,7 @@ class TestCompanyAPI:
         # First create a profile
         profile_data = {
             "name": "Test Company",
-            "nip": "1234563221",
+            "nip": "1234563224",
             "street": "ul. Testowa 1",
             "city": "Warszawa",
             "postal_code": "00-001"
@@ -176,7 +176,7 @@ class TestCompanyAPI:
         # First create a profile
         profile_data = {
             "name": "Test Company",
-            "nip": "1234563221",
+            "nip": "1234563224",
             "street": "ul. Testowa 1",
             "city": "Warszawa",
             "postal_code": "00-001"

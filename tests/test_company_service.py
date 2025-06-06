@@ -22,9 +22,9 @@ class TestNIPValidation:
         assert validate_nip(test_nip), f"NIP {test_nip} should be valid"
 
         # Test another valid NIP: 526-000-12-X
-        # Sum: 5*6 + 2*5 + 6*7 + 0*2 + 0*3 + 0*4 + 1*5 + 2*6 = 30+10+42+0+0+0+5+12 = 99
-        # 99 % 11 = 0, so checksum should be 0
-        test_nip2 = "5260001220"
+        # Sum: 5*6 + 2*5 + 6*7 + 0*2 + 0*3 + 0*4 + 1*5 + 2*6 + 2*7 = 30+10+42+0+0+0+5+12+14 = 113
+        # 113 % 11 = 3, so checksum should be 3
+        test_nip2 = "5260001223"
         assert validate_nip(test_nip2), f"NIP {test_nip2} should be valid"
     
     def test_invalid_nip_wrong_length(self):
@@ -98,7 +98,7 @@ class TestCompanyService:
         """Test creating duplicate company profile."""
         profile_data = {
             "name": "Test Company",
-            "nip": "1234563221",
+            "nip": "1234563224",
             "street": "ul. Testowa 1",
             "city": "Warszawa",
             "postal_code": "00-001"
@@ -122,7 +122,7 @@ class TestCompanyService:
         """Test getting existing company profile."""
         profile_data = {
             "name": "Test Company",
-            "nip": "1234563221",
+            "nip": "1234563224",
             "street": "ul. Testowa 1",
             "city": "Warszawa",
             "postal_code": "00-001"
