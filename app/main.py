@@ -5,10 +5,12 @@ from typing import AsyncGenerator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 from app.config import settings
 from app.database import init_db
-from app.routers import company, clients, zus
+from app.routers import company, clients, zus, web
 
 
 @asynccontextmanager
@@ -29,6 +31,9 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Setup templates for simple HTML interface (temporary for testing)
+templates = Jinja2Templates(directory="templates")
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -42,6 +47,7 @@ app.add_middleware(
 app.include_router(company.router)
 app.include_router(clients.router)
 app.include_router(zus.router)
+app.include_router(web.router)
 
 
 @app.get("/")

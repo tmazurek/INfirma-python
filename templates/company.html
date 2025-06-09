@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Company Management - InFirma{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>🏢 Company Management</h2>
+    
+    {% if request.query_params.get('success') == 'created' %}
+    <div class="alert alert-success">
+        <strong>Success!</strong> Company profile created successfully.
+    </div>
+    {% endif %}
+    
+    {% if request.query_params.get('error') %}
+    <div class="alert alert-error">
+        <strong>Error:</strong> {{ request.query_params.get('error') }}
+    </div>
+    {% endif %}
+    
+    {% if not company_profile %}
+    <div class="alert alert-error">
+        <strong>No Company Profile Found</strong><br>
+        Please create your company profile to start using the application.
+    </div>
+    
+    <h3>Create Company Profile</h3>
+    <form method="post" action="/web/company/create">
+        <div class="grid">
+            <div class="form-group">
+                <label for="name">Company Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="nip">NIP Number *</label>
+                <input type="text" id="nip" name="nip" required placeholder="1234563224">
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="form-group">
+                <label for="street">Street Address *</label>
+                <input type="text" id="street" name="street" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="postal_code">Postal Code *</label>
+                <input type="text" id="postal_code" name="postal_code" required placeholder="00-001">
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone">
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Create Company Profile</button>
+    </form>
+    
+    {% else %}
+    
+    <div class="alert alert-success">
+        <strong>Company Profile Active</strong><br>
+        Your company profile is set up and ready to use.
+    </div>
+    
+    <h3>Company Information</h3>
+    <div class="result-table">
+        <table class="result-table">
+            <tr>
+                <th>Company Name</th>
+                <td>{{ company_profile.name }}</td>
+            </tr>
+            <tr>
+                <th>NIP</th>
+                <td>{{ company_profile.nip }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ company_profile.street }}, {{ company_profile.city }} {{ company_profile.postal_code }}</td>
+            </tr>
+            {% if company_profile.email %}
+            <tr>
+                <th>Email</th>
+                <td>{{ company_profile.email }}</td>
+            </tr>
+            {% endif %}
+            {% if company_profile.phone %}
+            <tr>
+                <th>Phone</th>
+                <td>{{ company_profile.phone }}</td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+    
+    {% if tax_settings %}
+    <h3>Tax Settings</h3>
+    <div class="result-table">
+        <table class="result-table">
+            <tr>
+                <th>VAT Payer</th>
+                <td>{{ "Yes" if tax_settings.is_vat_payer else "No" }}</td>
+            </tr>
+            <tr>
+                <th>VAT Rate</th>
+                <td class="amount">{{ tax_settings.vat_rate }}%</td>
+            </tr>
+            <tr>
+                <th>Tax Type</th>
+                <td>{{ tax_settings.tax_type.value.title() }}</td>
+            </tr>
+            <tr>
+                <th>PIT Ryczałt Rate</th>
+                <td class="amount">{{ tax_settings.pit_ryczalt_rate }}%</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+    
+    {% if zus_settings %}
+    <h3>ZUS Settings</h3>
+    <div class="result-table">
+        <table class="result-table">
+            <tr>
+                <th>ZUS Base Amount</th>
+                <td class="amount">{{ zus_settings.zus_base_amount }} PLN</td>
+            </tr>
+            <tr>
+                <th>Emerytalne Rate</th>
+                <td class="amount">{{ zus_settings.emerytalne_rate }}%</td>
+            </tr>
+            <tr>
+                <th>Rentowe Rate</th>
+                <td class="amount">{{ zus_settings.rentowe_rate }}%</td>
+            </tr>
+            <tr>
+                <th>Wypadkowe Rate</th>
+                <td class="amount">{{ zus_settings.wypadkowe_rate }}%</td>
+            </tr>
+            <tr>
+                <th>Chorobowe</th>
+                <td>{{ "Active" if zus_settings.is_chorobowe_active else "Inactive" }} ({{ zus_settings.chorobowe_rate }}%)</td>
+            </tr>
+            <tr>
+                <th>Labor Fund Rate</th>
+                <td class="amount">{{ zus_settings.labor_fund_rate }}%</td>
+            </tr>
+            <tr>
+                <th>FEP</th>
+                <td>{{ "Active" if zus_settings.is_fep_active else "Inactive" }} ({{ zus_settings.fep_rate }}%)</td>
+            </tr>
+            <tr>
+                <th>Health Insurance Tier</th>
+                <td>{{ zus_settings.health_insurance_tier.value.title() }}</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+    
+    {% endif %}
+</div>
+
+<div class="card">
+    <h3>📚 Next Steps</h3>
+    <div class="grid">
+        <div>
+            <h4>👥 Add Clients</h4>
+            <p>Start adding your clients to manage their information.</p>
+            <a href="/web/clients" class="btn">Manage Clients</a>
+        </div>
+        <div>
+            <h4>💰 Calculate ZUS</h4>
+            <p>Calculate your monthly ZUS contributions.</p>
+            <a href="/web/zus" class="btn">Calculate ZUS</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

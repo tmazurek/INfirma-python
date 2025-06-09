@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}ZUS Calculation Result - InFirma{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>💰 ZUS Calculation Result</h2>
+    <p><strong>Calculation Date:</strong> {{ result.calculation_date }}</p>
+    {% if monthly_income %}
+    <p><strong>Monthly Income:</strong> {{ monthly_income }} PLN</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h3>📊 ZUS Contributions Breakdown</h3>
+    <div class="result-table">
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Contribution Type</th>
+                    <th>Base Amount</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Emerytalne (Pension)</strong></td>
+                    <td class="amount">{{ result.zus_base_amount }} PLN</td>
+                    <td class="amount">19.52%</td>
+                    <td class="amount"><strong>{{ result.emerytalne }} PLN</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Rentowe (Disability)</strong></td>
+                    <td class="amount">{{ result.zus_base_amount }} PLN</td>
+                    <td class="amount">8.00%</td>
+                    <td class="amount"><strong>{{ result.rentowe }} PLN</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Wypadkowe (Accident)</strong></td>
+                    <td class="amount">{{ result.zus_base_amount }} PLN</td>
+                    <td class="amount">1.67%</td>
+                    <td class="amount"><strong>{{ result.wypadkowe }} PLN</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Chorobowe (Sickness)</strong></td>
+                    <td class="amount">{{ result.zus_base_amount }} PLN</td>
+                    <td class="amount">2.45%</td>
+                    <td class="amount"><strong>{{ result.chorobowe }} PLN</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Labor Fund</strong></td>
+                    <td class="amount">{{ result.zus_base_amount }} PLN</td>
+                    <td class="amount">2.45%</td>
+                    <td class="amount"><strong>{{ result.labor_fund }} PLN</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>FEP</strong></td>
+                    <td class="amount">{{ result.zus_base_amount }} PLN</td>
+                    <td class="amount">0.10%</td>
+                    <td class="amount"><strong>{{ result.fep }} PLN</strong></td>
+                </tr>
+                <tr style="border-top: 2px solid #3498db;">
+                    <td><strong>Total ZUS Contributions</strong></td>
+                    <td colspan="2"></td>
+                    <td class="amount"><strong style="color: #3498db; font-size: 1.1rem;">{{ result.total_zus_contributions }} PLN</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <h3>🏥 Health Insurance</h3>
+    <div class="result-table">
+        <table class="result-table">
+            <tr>
+                <th>Health Insurance Tier</th>
+                <td>{{ result.health_insurance_tier.value.title() }}</td>
+            </tr>
+            <tr>
+                <th>Health Insurance Amount</th>
+                <td class="amount"><strong>{{ result.health_insurance }} PLN</strong></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <h3>💸 Total Monthly Payment</h3>
+    <div style="text-align: center; padding: 2rem;">
+        <div style="font-size: 3rem; color: #e74c3c; font-weight: bold; margin-bottom: 1rem;">
+            {{ result.total_with_health }} PLN
+        </div>
+        <p style="font-size: 1.2rem; color: #666;">
+            Total monthly ZUS + Health Insurance
+        </p>
+    </div>
+    
+    <div class="grid">
+        <div style="text-align: center; padding: 1rem; background: #ecf0f1; border-radius: 8px;">
+            <h4 style="color: #3498db; margin-bottom: 0.5rem;">{{ result.total_zus_contributions }} PLN</h4>
+            <p>ZUS Contributions</p>
+        </div>
+        <div style="text-align: center; padding: 1rem; background: #ecf0f1; border-radius: 8px;">
+            <h4 style="color: #27ae60; margin-bottom: 0.5rem;">{{ result.health_insurance }} PLN</h4>
+            <p>Health Insurance</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>🔄 Actions</h3>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/web/zus" class="btn">Calculate Again</a>
+        <a href="/web/company" class="btn">Modify Settings</a>
+        <a href="/docs#/zus-calculations/post_api_v1_zus_calculate_yearly_" class="btn">Yearly Calculation</a>
+    </div>
+</div>
+
+<div class="card">
+    <h3>📝 Important Notes</h3>
+    <ul style="margin-left: 1.5rem; line-height: 1.8;">
+        <li>All amounts are calculated using current Polish ZUS rates for 2024</li>
+        <li>Calculations use precise decimal arithmetic with proper rounding</li>
+        <li>Optional contributions (Chorobowe, FEP) can be configured in company settings</li>
+        <li>Health insurance tier affects the final health insurance amount</li>
+        <li>These calculations are for informational purposes - consult with an accountant for official filings</li>
+    </ul>
+</div>
+{% endblock %}

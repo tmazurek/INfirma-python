@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}ZUS Calculator - InFirma{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>💰 ZUS Calculator</h2>
+    <p>Calculate your monthly ZUS contributions based on your current settings and optional monthly income for health insurance.</p>
+    
+    {% if request.query_params.get('error') %}
+    <div class="alert alert-error">
+        <strong>Error:</strong> {{ request.query_params.get('error') }}
+    </div>
+    {% endif %}
+    
+    <form method="post" action="/web/zus/calculate">
+        <div class="form-group">
+            <label for="monthly_income">Monthly Income (PLN) - Optional</label>
+            <input 
+                type="number" 
+                id="monthly_income" 
+                name="monthly_income" 
+                step="0.01" 
+                min="0"
+                placeholder="e.g., 8000.00"
+            >
+            <small style="color: #666; font-size: 0.9rem;">
+                💡 This affects health insurance calculation. Leave empty to use default tier calculation.
+            </small>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Calculate ZUS Contributions</button>
+    </form>
+</div>
+
+<div class="card">
+    <h3>📋 How ZUS Calculation Works</h3>
+    <div class="grid">
+        <div>
+            <h4>🏥 Health Insurance Tiers</h4>
+            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li><strong>Low:</strong> 9% of 60% of average salary (≈ 378 PLN)</li>
+                <li><strong>Medium:</strong> 9% of 75% of average salary (≈ 472 PLN)</li>
+                <li><strong>High:</strong> 9% of actual income (for high earners)</li>
+            </ul>
+        </div>
+        
+        <div>
+            <h4>💼 ZUS Contributions</h4>
+            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li><strong>Emerytalne:</strong> 19.52% (pension)</li>
+                <li><strong>Rentowe:</strong> 8.00% (disability)</li>
+                <li><strong>Wypadkowe:</strong> 1.67% (accident)</li>
+                <li><strong>Chorobowe:</strong> 2.45% (sickness, optional)</li>
+                <li><strong>Labor Fund:</strong> 2.45%</li>
+                <li><strong>FEP:</strong> 0.10% (optional)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>🔧 Current ZUS Settings</h3>
+    <p>Your ZUS calculations are based on your company's current settings. You can modify these in the <a href="/web/company">Company Management</a> section.</p>
+    
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="/docs#/zus-calculations" class="btn">📚 View API Documentation</a>
+    </div>
+</div>
+{% endblock %}

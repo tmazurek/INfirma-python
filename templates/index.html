@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}InFirma - Dashboard{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>🎯 Welcome to InFirma Testing Interface</h2>
+    <p>This is a temporary HTML interface for testing the API functionality. In Phase 2, this will be replaced with a modern Vue.js Single Page Application.</p>
+    
+    <div class="grid" style="margin-top: 2rem;">
+        <div class="card">
+            <h3>🏢 Company Management</h3>
+            <p>Manage your company profile, tax settings, and ZUS configuration.</p>
+            <a href="/web/company" class="btn">Manage Company</a>
+        </div>
+        
+        <div class="card">
+            <h3>👥 Client Management</h3>
+            <p>Add, edit, and manage your clients with full contact information.</p>
+            <a href="/web/clients" class="btn">Manage Clients</a>
+        </div>
+        
+        <div class="card">
+            <h3>💰 ZUS Calculator</h3>
+            <p>Calculate monthly and yearly ZUS contributions with detailed breakdowns.</p>
+            <a href="/web/zus" class="btn">Calculate ZUS</a>
+        </div>
+        
+        <div class="card">
+            <h3>📚 API Documentation</h3>
+            <p>Explore the complete API documentation with interactive testing.</p>
+            <a href="/docs" class="btn">View API Docs</a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>📊 Current Implementation Status</h3>
+    <div class="result-table">
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Status</th>
+                    <th>Features</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Company Management</strong></td>
+                    <td><span style="color: #27ae60;">✅ Complete</span></td>
+                    <td>Profile, Tax Settings, ZUS Settings, NIP Validation</td>
+                </tr>
+                <tr>
+                    <td><strong>Client Management</strong></td>
+                    <td><span style="color: #27ae60;">✅ Complete</span></td>
+                    <td>CRUD, Pagination, Search, NIP Validation, Soft Delete</td>
+                </tr>
+                <tr>
+                    <td><strong>ZUS Calculations</strong></td>
+                    <td><span style="color: #27ae60;">✅ Complete</span></td>
+                    <td>Monthly/Yearly, Health Insurance, Detailed Breakdowns</td>
+                </tr>
+                <tr>
+                    <td><strong>Expense Tracking</strong></td>
+                    <td><span style="color: #f39c12;">🔄 Next</span></td>
+                    <td>Coming soon...</td>
+                </tr>
+                <tr>
+                    <td><strong>Invoice Management</strong></td>
+                    <td><span style="color: #95a5a6;">⏳ Planned</span></td>
+                    <td>Coming soon...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="alert alert-success">
+    <strong>🎉 Great Progress!</strong> 5 out of 14 tasks completed (35.7%). The core accounting functionality is working perfectly!
+</div>
+{% endblock %}
