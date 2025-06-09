@@ -218,12 +218,25 @@ This FastAPI blueprint provides a modern, performant, and well-structured approa
   - Comprehensive test suite (28 tests) - all passing
   - **Status**: ✅ COMPLETE - All features working 100%
 
+- **✅ FAPI_B05**: ZUS Calculation Service Complete
+  - Comprehensive ZUS calculation engine with all Polish contributions
+  - Precise Decimal calculations with proper rounding (ROUND_HALF_UP)
+  - Support for all ZUS components: Emerytalne, Rentowe, Wypadkowe, Chorobowe, Labor Fund, FEP
+  - Monthly and yearly calculation capabilities
+  - API endpoints at `/api/v1/zus` with detailed breakdowns
+  - **Status**: ✅ COMPLETE - ZUS calculations working 100%
+
+- **✅ FAPI_B06**: Health Insurance Logic Complete
+  - Three-tier health insurance system (Low/Medium/High)
+  - Income-based calculations for high earners
+  - Fixed-base calculations for low/medium tiers
+  - Integrated with ZUS calculation service
+  - **Status**: ✅ COMPLETE - Health insurance logic working 100%
+
 ### 🔄 CURRENT TASK:
-- **🔄 FAPI_B05**: ZUS Calculation Service (NEXT)
+- **🔄 FAPI_B07**: Expense Tracking Module (NEXT)
 
 ### 📋 REMAINING TASKS:
-- **FAPI_B05**: ZUS Calculation Service
-- **FAPI_B06**: Health Insurance Logic
 - **FAPI_B07**: Expense Tracking Module
 - **FAPI_B08**: VAT & PIT Calculation Services
 - **FAPI_B09**: Invoice Module - SQLModels & creation API
@@ -233,8 +246,8 @@ This FastAPI blueprint provides a modern, performant, and well-structured approa
 - **FAPI_B13**: Comprehensive E2E testing
 - **FAPI_B14**: Review & refinement
 
-### 📈 OVERALL PROGRESS: 3/14 tasks complete (21.4%)
+### 📈 OVERALL PROGRESS: 5/14 tasks complete (35.7%)
 
-**Last Updated**: 2025-06-06 13:30 CET
+**Last Updated**: 2025-06-09 11:15 CET
 
 </MARKDOWN_DOCUMENT>
