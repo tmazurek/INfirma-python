@@ -241,11 +241,18 @@ This FastAPI blueprint provides a modern, performant, and well-structured approa
   - Complete CRUD API at `/api/v1/expenses`
   - **Status**: ✅ COMPLETE - Full expense tracking operational
 
+- **✅ FAPI_B08**: VAT & PIT Calculation Services Complete
+  - Complete VAT calculation engine with income/expense tracking
+  - PIT calculation for all Polish tax types (Ryczałt, Liniowy, Progresywny)
+  - Monthly tax summaries combining VAT, PIT, and ZUS
+  - Tax comparison tool for optimal tax type selection
+  - Complete API at `/api/v1/taxes` with detailed breakdowns
+  - **Status**: ✅ COMPLETE - Full Polish tax calculation system operational
+
 ### 🔄 CURRENT TASK:
-- **🔄 FAPI_B08**: VAT & PIT Calculation Services (NEXT)
+- **🔄 FAPI_B09**: Invoice Module - SQLModels & creation API (NEXT)
 
 ### 📋 REMAINING TASKS:
-- **FAPI_B08**: VAT & PIT Calculation Services
 - **FAPI_B09**: Invoice Module - SQLModels & creation API
 - **FAPI_B10**: Invoice Module - Listing/retrieval, PDF generation
 - **FAPI_B11**: Invoice Module - Status management endpoints
@@ -253,8 +260,8 @@ This FastAPI blueprint provides a modern, performant, and well-structured approa
 - **FAPI_B13**: Comprehensive E2E testing
 - **FAPI_B14**: Review & refinement
 
-### 📈 OVERALL PROGRESS: 6/14 tasks complete (42.9%)
+### 📈 OVERALL PROGRESS: 7/14 tasks complete (50.0%)
 
-**Last Updated**: 2025-06-09 18:45 CET
+**Last Updated**: 2025-06-09 20:30 CET
 
 </MARKDOWN_DOCUMENT>
