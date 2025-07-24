@@ -10,7 +10,7 @@ from fastapi.templating import Jinja2Templates
 
 from app.config import settings
 from app.database import init_db
-from app.routers import company, clients, zus, expenses, taxes, web
+from app.routers import company, clients, zus, expenses, taxes, invoices, web
 
 
 @asynccontextmanager
@@ -49,6 +49,7 @@ app.include_router(clients.router)
 app.include_router(zus.router)
 app.include_router(expenses.router)
 app.include_router(taxes.router)
+app.include_router(invoices.router)
 app.include_router(web.router)
 
 

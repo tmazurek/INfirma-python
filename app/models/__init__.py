@@ -9,6 +9,13 @@ from app.models.tax_models import (
     MonthlyTaxSummary,
     TaxPeriod
 )
+from app.models.invoice_models import (
+    Invoice,
+    InvoiceItem,
+    InvoiceStatus,
+    PaymentTerms,
+    InvoiceSummary
+)
 
 __all__ = [
     "CompanyProfile",
@@ -22,4 +29,9 @@ __all__ = [
     "PITCalculationResult",
     "MonthlyTaxSummary",
     "TaxPeriod",
+    "Invoice",
+    "InvoiceItem",
+    "InvoiceStatus",
+    "PaymentTerms",
+    "InvoiceSummary",
 ]
